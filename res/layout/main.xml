@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+
+<TableLayout android:id="@+id/TableLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<TableRow>
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/lblSpaceStatus"
+			android:text="Hackerspace status:" />
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/imgSpaceStatus"></ImageView>
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/lblSpaceStatusValue"
+			android:text="" />
+	</TableRow>
+
+	<TableRow>
+		<Button android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/btnRefresh"
+			android:text="Refresh" android:layout_column="1"></Button>
+	</TableRow>
+
+	<TableRow>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Alarm status:"
+			android:id="@+id/lblAlarmStatus"></TextView>
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/imgAlarmStatus"></ImageView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text=""
+			android:id="@+id/lblAlarmStatusValue"></TextView>
+	</TableRow>
+
+	<TableRow>
+		<Button android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Toggle Alarm"
+			android:id="@+id/btnToggleAlarm" android:layout_column="1"></Button>
+	</TableRow>
+</TableLayout>
 
 
 
-<TableLayout android:id="@+id/TableLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content"><TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/lblTest1" android:text="Hackerspace status:" /><ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/imgSpaceStatus"></ImageView><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Alarm status:" android:id="@+id/lblAlarmStatus"></TextView><ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/imgAlarmStatus"></ImageView></TableLayout>
 
 
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btnRefresh" android:text="Refresh"></Button>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Toggle Alarm" android:id="@+id/btnToggleAlarm"></Button>
-</LinearLayout>

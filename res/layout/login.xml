@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      xmlns:android="http://schemas.android.com/apk/res/android" >
 
-      <Button
-            android:id="@+id/btn_sign_in"
-            android:layout_width="100px"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:layout_x="103px"
-            android:layout_y="197px"/>
-      <EditText
-            android:id="@+id/txt_username"
-            android:layout_width="250px"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:singleLine="true"
-            android:textSize="18sp"
-            android:layout_x="40px"
-            android:layout_y="32px" />
-      <EditText
-            android:id="@+id/txt_password"
-            android:layout_width="250px"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:singleLine="true"
-            android:textSize="18sp"
-            android:password="true"
-            android:layout_x="40px"
-            android:layout_y="86px" />
-</AbsoluteLayout>
+<TableLayout android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:id="@+id/TableLayout01"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TableRow>
+		<TextView android:text="Username" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_column="1" />
+		<EditText android:id="@+id/txt_username"
+			android:layout_height="wrap_content" android:layout_width="160px"
+			android:singleLine="true" android:textSize="18sp" />
+	</TableRow>
+	<TableRow>
+		<TextView android:text="Password" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_column="1" />
+		<EditText android:id="@+id/txt_password"
+			android:layout_height="wrap_content" android:layout_width="160px"
+			android:singleLine="true" android:textSize="18sp" android:password="true" />
+	</TableRow>
+	<TableRow>
+		<!--<Button android:id="@+id/backbutton" android:text="Back" android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" /> -->
+		<Button android:id="@+id/btn_sign_in" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Sign In"
+			android:layout_column="2" />
+	</TableRow>
+</TableLayout>

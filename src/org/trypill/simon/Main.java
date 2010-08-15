@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class Main extends Activity {
@@ -25,6 +26,8 @@ public class Main extends Activity {
     Button btnToggleAlarm = null;
     ImageView imgHSStatus = null;
     ImageView imgAlarmStatus = null;
+    TextView lblHSStatus = null;
+    TextView lblAlarmStatus = null;
     boolean alarmStatus = false;
     boolean spaceStatus = false;
 	
@@ -46,6 +49,8 @@ public class Main extends Activity {
 	    btnToggleAlarm = (Button) findViewById(R.id.btnToggleAlarm);
 	    imgHSStatus = (ImageView) findViewById(R.id.imgSpaceStatus);
 	    imgAlarmStatus = (ImageView) findViewById(R.id.imgAlarmStatus);
+	    lblHSStatus = (TextView) findViewById(R.id.lblSpaceStatusValue);
+	    lblAlarmStatus = (TextView) findViewById(R.id.lblAlarmStatusValue);
         
         btnRefresh.setOnClickListener(new Button.OnClickListener() {
 			@Override
@@ -77,7 +82,7 @@ public class Main extends Activity {
     {
     	String strAlarm = HttpHelper.getInstance().downloadText("https://www.hackerspace.lu/wiki/Syn2cat");
     	
-    	if (strAlarm.contains("The hackerspace is currently open. Come on in!"))
+    	if (strAlarm.contains("Come on in!"))
     		return true;
     	
     	return false;
@@ -111,8 +116,10 @@ public class Main extends Activity {
 			if (spaceStatus)
 			{
 				imgHSStatus.setImageResource(R.drawable.security_high);
+				lblHSStatus.setText("(Open)");
 			}else{
 				imgHSStatus.setImageResource(R.drawable.security_low);
+				lblHSStatus.setText("(Closed)");
 			}
 			
 			try
@@ -120,11 +127,16 @@ public class Main extends Activity {
 				alarmStatus = isAlarmOn();
 				
 				if (alarmStatus)
+				{
 					imgAlarmStatus.setImageResource(R.drawable.user_online);
-				else
+					lblAlarmStatus.setText("(On)");
+				}else{
 					imgAlarmStatus.setImageResource(R.drawable.user_busy);
+					lblAlarmStatus.setText("(Off)");
+				}
 			}catch (UnknownHostException uh){
 				imgAlarmStatus.setImageResource(R.drawable.warning);
+				lblAlarmStatus.setText("(No status)");
 			}
 
 			
