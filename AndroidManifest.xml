@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="lu.syn2cat.hackerspace" android:versionName="0.3.5" android:versionCode="2">
+	package="lu.syn2cat.hackerspace" android:versionName="0.3.6" android:versionCode="3">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:name=".Main" android:label="@string/app_name">
 			<intent-filter>
@@ -10,6 +10,14 @@
 		</activity>
 
 		<activity android:name="LoginActivity"></activity>
+
+		<receiver android:name="Syn2catWidgetProvider">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider"
+				android:resource="@xml/syn2cat_widget" />
+		</receiver>
 	</application>
 
 	<uses-sdk android:minSdkVersion="4" />
