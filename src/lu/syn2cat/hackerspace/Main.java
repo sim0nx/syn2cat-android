@@ -115,10 +115,10 @@ public class Main extends Activity {
         		
 			if (spaceStatus)
 			{
-				imgHSStatus.setImageResource(R.drawable.security_high);
+				imgHSStatus.setImageResource(R.drawable.lighton);
 				lblHSStatus.setText("(Open)");
 			}else{
-				imgHSStatus.setImageResource(R.drawable.security_low);
+				imgHSStatus.setImageResource(R.drawable.lightoff);
 				lblHSStatus.setText("(Closed)");
 			}
 			
@@ -128,10 +128,10 @@ public class Main extends Activity {
 				
 				if (alarmStatus)
 				{
-					imgAlarmStatus.setImageResource(R.drawable.user_online);
+					imgAlarmStatus.setImageResource(R.drawable.lightred);
 					lblAlarmStatus.setText("(On)");
 				}else{
-					imgAlarmStatus.setImageResource(R.drawable.user_busy);
+					imgAlarmStatus.setImageResource(R.drawable.lightgreen);
 					lblAlarmStatus.setText("(Off)");
 				}
 			}catch (UnknownHostException uh){

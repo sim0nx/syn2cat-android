@@ -52,9 +52,9 @@ public class Syn2catWidgetProvider extends AppWidgetProvider {
 			{
 				if (isSpaceOpen())
 				{
-					views.setTextViewText(R.id.widget_hsstatus, "Hackerpace\nopen !");
+					views.setImageViewResource(R.id.widgetSpaceStatus, R.drawable.widget_space_open);
 				}else{
-					views.setTextViewText(R.id.widget_hsstatus, "Hackerspace\nclosed !");
+					views.setImageViewResource(R.id.widgetSpaceStatus, R.drawable.widget_space_closed);
 				}
 			} catch (UnknownHostException uhe)
 			{
