@@ -80,9 +80,9 @@ public class Main extends Activity {
     
     private boolean isSpaceOpen() throws UnknownHostException
     {
-    	String strAlarm = HttpHelper.getInstance().downloadText("https://www.hackerspace.lu/wiki/Syn2cat");
+    	String strAlarm = HttpHelper.getInstance().downloadText("http://www.hackerspace.lu/wiki/Syn2cat");
     	
-    	if (strAlarm.contains("Come on in!"))
+    	if (strAlarm.contains("Come on in"))
     		return true;
     	
     	return false;
@@ -92,7 +92,7 @@ public class Main extends Activity {
     {
     	String strAlarm = HttpHelper.getInstance().downloadText("http://openduino.lan");
     	
-    	if (strAlarm.contains("The syn2cat hackerspace is currently open"))
+    	if (strAlarm.contains("Alarm is OFF"))
     		return false;
     	
     	return true;
@@ -111,9 +111,7 @@ public class Main extends Activity {
     {
         try
         {
-        	spaceStatus = isSpaceOpen();
-        		
-			if (spaceStatus)
+			if (isSpaceOpen())
 			{
 				imgHSStatus.setImageResource(R.drawable.lighton);
 				lblHSStatus.setText("(Open)");
@@ -124,9 +122,7 @@ public class Main extends Activity {
 			
 			try
 			{
-				alarmStatus = isAlarmOn();
-				
-				if (alarmStatus)
+				if (isAlarmOn())
 				{
 					imgAlarmStatus.setImageResource(R.drawable.lightred);
 					lblAlarmStatus.setText("(On)");

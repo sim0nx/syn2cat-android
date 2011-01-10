@@ -25,9 +25,9 @@ public class Syn2catWidgetProvider extends AppWidgetProvider {
 	
     private boolean isSpaceOpen() throws UnknownHostException
     {
-    	String strAlarm = HttpHelper.getInstance().downloadText("https://www.hackerspace.lu/wiki/Syn2cat");
+    	String strAlarm = HttpHelper.getInstance().downloadText("http://www.hackerspace.lu/wiki/Syn2cat");
     	
-    	if (strAlarm.contains("Come on in!"))
+    	if (strAlarm.contains("Come on in"))
     		return true;
     	
     	return false;
