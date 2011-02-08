@@ -72,7 +72,8 @@ public class LoginActivity extends Activity {
 	
     private String doLogin() throws UnknownHostException, IOException, InvalidLogin
     {
-		URL url = new URL("https://www.hackerspace.lu/alarm.php");
+		//URL url = new URL("https://www.hackerspace.lu/alarm.php");
+		URL url = new URL("https://open.lusitania.lan/alarm.php");
 		HttpURLConnection cnx = (HttpURLConnection)url.openConnection();
 
 		try {
