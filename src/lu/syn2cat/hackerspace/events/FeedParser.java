@@ -20,17 +20,10 @@ public class FeedParser {
             {
                 JSONObject post = items.getJSONObject(i);
                 
-                events.add(new Event(post.getString("label"),
-                		post.getString("uri"),
-                		post.getString("has_location"),
-                		post.getString("startdate"),
-                		post.getString("enddate")));
+                events.add(new Event(post));
             }
-
         }
-        catch (Exception e)
-        {
-        }
+        catch (Exception e){}
 
         return events;
     }

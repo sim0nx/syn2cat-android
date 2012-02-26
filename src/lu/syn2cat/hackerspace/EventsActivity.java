@@ -39,7 +39,7 @@ public class EventsActivity extends Activity {
             
             String mwLimiter = now.get(Calendar.YEAR) + "-2D" + (now.get(Calendar.MONTH) + 1) + "-2D" + now.get(Calendar.DATE);
         	
-			String strEvents = HttpHelper.getInstance().downloadText("http://www.hackerspace.lu/wiki/Special:Ask/-5B-5BCategory:Event-7C-7CMeeting-7C-7CWorkshop-5D-5D-20-5B-5BStartDate::-3E" + mwLimiter + "-5D-5D-0A-5B-5BIs-20External::no-5D-5D/-3FStartDate/-3FEndDate/-3FHas-20location/order%3DDESC/sort%3DStartDate/limit%3D25/format%3Djson");
+			String strEvents = HttpHelper.getInstance().downloadText("http://www.hackerspace.lu/wiki/Special:Ask/-5B-5BCategory:Event-7C-7CMeeting-7C-7CWorkshop-5D-5D-20-5B-5BStartDate::-3E" + mwLimiter + "-5D-5D-0A-5B-5BIs-20External::no-5D-5D/-3FStartDate/-3FEndDate/-3FHas-20location/order%3DDESC/sort%3DStartDate/limit%3D25/-3FUrl/-3FHas-20organizer/format%3Djson");
 			FeedParser feedParser = new FeedParser();
 			
 			List<Event> events = feedParser.parse(strEvents);
@@ -51,13 +51,16 @@ public class EventsActivity extends Activity {
 				
 	        	TableRow tblRow = new TableRow(getApplicationContext());
 	        	TextView text = new TextView(getApplicationContext());
-	        	text.setText(event.getLabel() + "\n" + event.getLocation() + "\n" + event.getFrom() + " - " + event.getTo() + "\n");
+	        	text.setText(event.getLabel() + "\n" + event.getLocation() + "\n" + event.getFrom() + " - " + event.getTo() + "\n" + event.getOrganizer() + "\n");
 	        	tblRow.addView(text);
 
 	        	if (isEventToday(event.getFrom()))
 	        	{
 	        		text.setTextColor(Color.BLACK);
 	        		tblRow.setBackgroundColor(Color.GREEN);
+	        	}else if (isEventPast(event.getFrom()))
+	        	{
+	        		text.setTextColor(Color.GRAY);	        		
 	        	}
 	        	
 	        	tblEvents.addView(tblRow);
@@ -82,6 +85,33 @@ public class EventsActivity extends Activity {
 	        if (da1.getDate() == da2.getDate() &&
 	        		da1.getMonth() == da2.getMonth() &&
 	        		da1.getYear() == da2.getYear())
+	        	return true;
+	        
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+        return false;
+      }
+    
+    // Is this is a past event ?
+    public boolean isEventPast(String date)
+    {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        try {
+			Date da1 = df.parse(date);
+			
+			Calendar now = Calendar.getInstance();
+			Date da2 = now.getTime();
+			
+	        if ((da1.getDate() < da2.getDate() &&
+	        		da1.getMonth() == da2.getMonth() &&
+	        		da1.getYear() == da2.getYear())
+	        		||
+	        		(da1.getMonth() <= da2.getMonth() &&
+	        		da1.getYear() <= da2.getYear())
+	        		)
 	        	return true;
 	        
 		} catch (ParseException e) {

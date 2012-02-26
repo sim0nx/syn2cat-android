@@ -1,5 +1,8 @@
 package lu.syn2cat.hackerspace.events;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class Event {
 /*        <swivt:Subject rdf:about="&wiki;Chaos_Communication_Camp_2011">
@@ -17,14 +20,34 @@ public class Event {
 	String location = "";
 	String from = "";
 	String to = "";
+	String organizer = "";
     
-    public Event(String label, String url, String location, String from, String to)
+    
+    public Event(JSONObject post)
     {
-    	this.label = label;
-    	this.url = url;
-    	this.location = location;
-    	this.from = from;
-    	this.to = to;
+		try {
+			label = post.getString("label");
+		} catch (JSONException e) {}
+    	
+		try {
+			url = post.getString("url");
+		} catch (JSONException e) {}
+        
+		try {
+			location = post.getJSONArray("has_location").getString(0);
+		} catch (JSONException e) {}
+		
+		try {
+			organizer = post.getJSONArray("has_organizer").getString(0).replaceAll("Organisation:", "");
+		} catch (JSONException e) {}
+		
+		try {
+			from = post.getJSONArray("startdate").getString(0);
+		} catch (JSONException e) {}
+		
+		try {
+			to = post.getJSONArray("enddate").getString(0);
+		} catch (JSONException e) {}
     }
 
     public String getLabel()
@@ -50,5 +73,10 @@ public class Event {
     public String getTo()
     {
     	return this.to;
+    }
+    
+    public String getOrganizer()
+    {
+    	return this.organizer;
     }
 }
