@@ -2,7 +2,9 @@ package lu.syn2cat.hackerspace;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
@@ -34,28 +36,39 @@ public class HomeActivity extends Activity {
         webView1.setWebChromeClient(new WebChromeClient() {
         	@Override
         	public void onProgressChanged(WebView view, int progress) {
-        	  super.onProgressChanged(view, progress);
-        	  pbProgressbar.setProgress(progress);
-        	  
-        	  if (progress == 100)
-        	  {
-        		  pbProgressbar.setVisibility(View.INVISIBLE);
-        		  webView1.setVisibility(View.VISIBLE);
-        	  }else{
-    			  pbProgressbar.setVisibility(View.VISIBLE);
-    			  webView1.setVisibility(View.INVISIBLE);
-    		  }
-        	  
-        	  System.out.println(progress);
-          }
-        });
+        		super.onProgressChanged(view, progress);
+        		pbProgressbar.setProgress(progress);
 
+        		if (progress == 100)
+        		{
+        			pbProgressbar.setVisibility(View.INVISIBLE);
+        			webView1.setVisibility(View.VISIBLE);
+        		}else{
+        			pbProgressbar.setVisibility(View.VISIBLE);
+        			webView1.setVisibility(View.INVISIBLE);
+        		}
+        	}
+        });
+        	
         final Activity activity = this;
         webView1.setWebViewClient(new WebViewClient() {
-        	   public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-        	     Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
-        	   }
-        	 });
+        	@Override
+        	public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        		Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+        	}
+
+        	@Override
+        	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        		if( url.startsWith("http:") || url.startsWith("https:") ) {
+        			return false;
+        		}
+
+        		// Otherwise allow the OS to handle it
+        		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        		startActivity( intent ); 
+        		return true;
+        	}
+        });
         
         
         webView1.loadUrl("https://status.syn2cat.lu");
@@ -76,5 +89,16 @@ public class HomeActivity extends Activity {
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.home, menu);
 //        return true;
+//    }
+    
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//        
+//        return super.onKeyDown(keyCode, event);
 //    }
 }
