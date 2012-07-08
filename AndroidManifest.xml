@@ -1,24 +1,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="lu.syn2cat.hackerspace" android:versionCode="9" android:versionName="0.3.12">
-	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15"/>
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-	<application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".Main" android:label="@string/app_name">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+    package="lu.syn2cat.hackerspace"
+    android:versionCode="10"
+    android:versionName="0.4.0" >
 
-		<activity android:name="LoginActivity"></activity>
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
 
-		<receiver android:name="Syn2catWidgetProvider">
-			<intent-filter>
-				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-			</intent-filter>
-			<meta-data android:name="android.appwidget.provider"
-				android:resource="@xml/syn2cat_widget" />
-		</receiver>
-		<activity android:name="EventsActivity"></activity>
-	</application>
-</manifest> 
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="LoginActivity" >
+        </activity>
+
+        <receiver android:name="Syn2catWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/syn2cat_widget" />
+        </receiver>
+        
+    </application>
+
+</manifest>

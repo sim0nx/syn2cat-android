@@ -25,6 +25,7 @@ public class Main extends Activity {
     Button btnRefresh = null;
     Button btnToggleAlarm = null;
     Button btnEvents = null;
+    Button btnB1 = null;
     ImageView imgHSStatus = null;
     ImageView imgAlarmStatus = null;
     TextView lblHSStatus = null;
@@ -49,6 +50,7 @@ public class Main extends Activity {
 	    btnRefresh = (Button) findViewById(R.id.btnRefresh);
 	    btnToggleAlarm = (Button) findViewById(R.id.btnToggleAlarm);
 	    btnEvents = (Button) findViewById(R.id.btnEvents);
+	    btnB1 = (Button) findViewById(R.id.button1);
 	    imgHSStatus = (ImageView) findViewById(R.id.imgSpaceStatus);
 	    imgAlarmStatus = (ImageView) findViewById(R.id.imgAlarmStatus);
 	    lblHSStatus = (TextView) findViewById(R.id.lblSpaceStatusValue);
@@ -74,6 +76,15 @@ public class Main extends Activity {
         	@Override
 			public void onClick(View v) {
         		Intent intent=new Intent(getApplicationContext(), EventsActivity.class);
+                startActivity(intent);
+                finish();
+			}
+        });
+        
+        btnB1.setOnClickListener(new Button.OnClickListener() {
+        	@Override
+			public void onClick(View v) {
+        		Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 finish();
 			}

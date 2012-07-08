@@ -111,7 +111,7 @@ public class LoginActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Intent intent=new Intent(getApplicationContext(), Main.class);
+			Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(intent);
             finish();
         }
